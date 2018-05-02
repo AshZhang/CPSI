@@ -101,6 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   yVel: 6
   rb: {fileID: 50261154209780520}
+  explosion: {fileID: 1301984020171162, guid: 200bb01e1a4574eba87d0f8083eb662d, type: 2}
 --- !u!212 &212437541812178028
 SpriteRenderer:
   m_ObjectHideFlags: 1

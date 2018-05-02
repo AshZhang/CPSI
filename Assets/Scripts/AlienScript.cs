@@ -7,6 +7,7 @@ public class AlienScript : MonoBehaviour {
 
 	public GameObject alienBullet;
 
+
 	private int row;
 	private int col;
 
@@ -33,5 +34,9 @@ public class AlienScript : MonoBehaviour {
 
 	public int getRow(){
 		return row;
+	}
+
+	public Vector3 getPos(){
+		return transform.position;
 	}
 }

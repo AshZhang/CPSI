@@ -7,22 +7,23 @@ public class BulletMovement : MonoBehaviour
 
 	public float yVel;
 	public Rigidbody2D rb;
+	public GameObject explosion;
 
 	// Use this for initialization
-	void Start ()
+	public virtual void Start ()
 	{
 		rb.velocity = new Vector3 (0, yVel, 0);
 	}
 
 	// Update is called once per frame
-	void Update ()
+	public virtual void Update ()
 	{
 		if (transform.position.y > 6) {
 			Destroy (this.gameObject);
 		}
 	}
 
-	void OnDestroy ()
+	public virtual void OnDestroy ()
 	{
 		GameObject.Find ("Player").GetComponent<PlayerControl> ().deleteBullet ();
 	}
@@ -36,10 +37,7 @@ public class BulletMovement : MonoBehaviour
 			Destroy (this.gameObject);
 			AlienMovement alienArray = GameObject.Find ("AlienParent").GetComponent<AlienMovement> ();
 			AlienScript deadAlien = coll.gameObject.GetComponent<AlienScript> ();
-			if (coll.gameObject != null) {
-				alienArray.removeAlien (deadAlien.getRow (), deadAlien.getCol ());
-			}
-			Destroy (coll.gameObject);
+			alienArray.removeAlien (deadAlien.getRow (), deadAlien.getCol ());
 		}
 	}
 

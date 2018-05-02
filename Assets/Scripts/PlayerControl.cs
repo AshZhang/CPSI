@@ -12,12 +12,13 @@ public class PlayerControl : MonoBehaviour
 	public GameObject bullet;
 	public GameObject arrayBullet;
 	public Text livesText;
+	public GameObject explosion;
 
 	private int lives;
 	private int maxBullets;
 	private int numBullets;
 	private int numSpecialShots;
-	private int powerupMode;
+	private string powerupMode;
 	// 0 = normal, 1 = loop, 2 = arrays, 3 = OOP, 4 = recursion
 
 	// Use this for initialization
@@ -28,7 +29,7 @@ public class PlayerControl : MonoBehaviour
 		maxBullets = 1;
 		numBullets = 0;
 		numSpecialShots = 0;
-		powerupMode = 0;
+		powerupMode = "none";
 
 	}
 	
@@ -38,24 +39,25 @@ public class PlayerControl : MonoBehaviour
 		rb.velocity = new Vector2 (Input.GetAxis ("Horizontal") * xVel, 0);
 		if (Input.GetButton ("Fire1") && numBullets < maxBullets) {
 			if (numSpecialShots == 0) {
-				powerupMode = 0;
+				powerupMode = "none";
 				maxBullets = 1;
 			} else {
 				numSpecialShots--;
 			}
 			switch (powerupMode) {
-			case 1:
+			case "loop":
 				for (int i = 0; i < maxBullets; i++) {
-					Instantiate (bullet, new Vector3 (transform.position.x + (i-1) * 0.5f, transform.position.y + 0.35f, transform.position.z), Quaternion.identity);
+					Instantiate (bullet, new Vector3 (transform.position.x + (i - 1) * 0.5f, transform.position.y + 0.35f, transform.position.z), Quaternion.identity);
 					numBullets++;
 				}
 				break;
-			case 2:
+			case "arraylist":
 				Instantiate (arrayBullet, new Vector3 (transform.position.x, transform.position.y + 0.35f, transform.position.z), Quaternion.identity);
+				numBullets++;
 				break;
-			case 3:
+			case "OOP":
 				break;
-			case 4:
+			case "TA":
 				break;
 			default:
 				Instantiate (bullet, new Vector3 (transform.position.x, transform.position.y + 0.35f, transform.position.z), Quaternion.identity);
@@ -63,26 +65,44 @@ public class PlayerControl : MonoBehaviour
 				break;
 			}
 		}
+		if (lives <= 0) {
+			Destroy (gameObject);
+			SceneManager.LoadScene ("Lose");
+		}
+
 	}
 
 	void OnCollisionEnter2D (Collision2D coll)
 	{
 		if (coll.gameObject.name == "AlienBullet(Clone)" || coll.gameObject.name == "Alien 1(Clone)") {
 			lives--;
-			if (lives < 0) {
-				SceneManager.LoadScene ("Lose");
-			}
+			Instantiate (explosion, transform.position, Quaternion.identity);
 			livesText.text = "Lives: " + lives;
-		} else if (coll.gameObject.name == "Loop Powerup") {
-			maxBullets = 3;
-			numSpecialShots = 5;
-			powerupMode = 1;
-		} else if (coll.gameObject.name == "Array Powerup") {
-			maxBullets = 1;
-			numSpecialShots = 3;
-			powerupMode = 2;
-		}
-		if (!coll.gameObject.name.Contains("Side Walls") && !coll.gameObject.name.Contains("Alien 1")) {
+			Destroy (coll.gameObject);
+		} else if (!coll.gameObject.name.Contains ("Side Walls") && !coll.gameObject.name.Contains ("Alien 1")) {
+			string objName = coll.gameObject.GetComponent<Powerup> ().getPower ();
+			switch (objName) {
+			case "loop":
+				maxBullets = 3;
+				numSpecialShots = 5;
+				break;
+			case "arraylist":
+				maxBullets = 1;
+				numSpecialShots = 3;
+				break;
+			case "OOP":
+				break;
+			case "TA":
+				break;
+			case "pumpkin":
+				lives++;
+				break;
+			default:
+				break;
+			}
+			if (objName != "pumpkin") {
+				powerupMode = objName;
+			}
 			Destroy (coll.gameObject);
 		}
 	}

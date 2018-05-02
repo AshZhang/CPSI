@@ -98,6 +98,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   alienBullet: {fileID: 1531083019190728, guid: 63bb81e6385554eb5a10e5701c948265,
     type: 2}
+  explosion: {fileID: 7400000, guid: db9b8e04a94a74911be700baeef8cb79, type: 2}
 --- !u!212 &212797577748628440
 SpriteRenderer:
   m_ObjectHideFlags: 1
