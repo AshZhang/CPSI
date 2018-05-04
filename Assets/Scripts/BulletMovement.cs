@@ -9,10 +9,14 @@ public class BulletMovement : MonoBehaviour
 	public Rigidbody2D rb;
 	public GameObject explosion;
 
+	private bool velSet;
+
 	// Use this for initialization
 	public virtual void Start ()
 	{
-		rb.velocity = new Vector3 (0, yVel, 0);
+		if (!velSet) {
+			rb.velocity = new Vector3 (0, yVel, 0);
+		}
 	}
 
 	// Update is called once per frame
@@ -28,7 +32,7 @@ public class BulletMovement : MonoBehaviour
 		GameObject.Find ("Player").GetComponent<PlayerControl> ().deleteBullet ();
 	}
 
-	void OnCollisionEnter2D (Collision2D coll)
+	public virtual void OnCollisionEnter2D (Collision2D coll)
 	{
 		if (coll.gameObject.tag == "Bullet") {
 			Physics2D.IgnoreCollision (GetComponent<BoxCollider2D> (), coll.collider);
@@ -39,6 +43,15 @@ public class BulletMovement : MonoBehaviour
 			AlienScript deadAlien = coll.gameObject.GetComponent<AlienScript> ();
 			alienArray.removeAlien (deadAlien.getRow (), deadAlien.getCol ());
 		}
+	}
+
+	public void setVelocity(Vector3 vel){
+		rb.velocity = vel;
+		velSet = true;
+	}
+
+	public float getVelocity(){
+		return yVel;
 	}
 
 }

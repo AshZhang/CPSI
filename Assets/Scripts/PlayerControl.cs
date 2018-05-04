@@ -11,6 +11,7 @@ public class PlayerControl : MonoBehaviour
 	public float xVel;
 	public GameObject bullet;
 	public GameObject arrayBullet;
+	public GameObject OOPBullet;
 	public Text livesText;
 	public GameObject explosion;
 
@@ -56,6 +57,8 @@ public class PlayerControl : MonoBehaviour
 				numBullets++;
 				break;
 			case "OOP":
+				Instantiate (OOPBullet, new Vector3 (transform.position.x, transform.position.y + 0.35f, transform.position.z), Quaternion.identity);
+				numBullets++;
 				break;
 			case "TA":
 				break;
@@ -91,6 +94,8 @@ public class PlayerControl : MonoBehaviour
 				numSpecialShots = 3;
 				break;
 			case "OOP":
+				maxBullets = 1;
+				numSpecialShots = 3;
 				break;
 			case "TA":
 				break;
@@ -110,5 +115,9 @@ public class PlayerControl : MonoBehaviour
 	public void deleteBullet ()
 	{
 		numBullets--;
+	}
+
+	public void addBullet(){
+		numBullets++;
 	}
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ArrayBullet : BulletMovement {
 
-	void OnCollisionEnter2D (Collision2D coll)
+	public override void OnCollisionEnter2D (Collision2D coll)
 	{
 		if (coll.gameObject.tag == "Bullet") {
 			Physics2D.IgnoreCollision (GetComponent<BoxCollider2D> (), coll.collider);

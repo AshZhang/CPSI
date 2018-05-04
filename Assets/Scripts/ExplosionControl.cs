@@ -8,6 +8,7 @@ public class ExplosionControl : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		transform.position = new Vector3 (transform.position.x, transform.position.y, transform.position.z - 5);
 	}
 	
 	// Update is called once per frame

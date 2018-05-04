@@ -148,6 +148,7 @@ MonoBehaviour:
   bullet: {fileID: 1277736824360616, guid: adda4f369acda43008d7a9cc6008526a, type: 2}
   arrayBullet: {fileID: 1101387079478090, guid: cae03b2498f574bc4a6b3c0a7b596af7,
     type: 2}
+  OOPBullet: {fileID: 1186440563978850, guid: 01c2f33fffa1e4cf288eef5f386ff7cf, type: 2}
   livesText: {fileID: 945936196}
   explosion: {fileID: 1301984020171162, guid: 200bb01e1a4574eba87d0f8083eb662d, type: 2}
 --- !u!212 &685275946
@@ -597,6 +598,11 @@ Prefab:
     - target: {fileID: 4619321773561616, guid: ff9ec88f66e8843c9b56bb664339b85e, type: 2}
       propertyPath: m_RootOrder
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114303144388480542, guid: ff9ec88f66e8843c9b56bb664339b85e,
+        type: 2}
+      propertyPath: power
+      value: OOP
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ff9ec88f66e8843c9b56bb664339b85e, type: 2}

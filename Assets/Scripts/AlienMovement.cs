@@ -47,7 +47,6 @@ public class AlienMovement : MonoBehaviour
 	{
 		if (alienRows.Count != 0) {
 			if (!goingDown) {
-				Debug.Log ("Last row number is: " + (rowParents.Count - 1));
 				if ((rowParents [0] as GameObject).transform.position.x < -8 || (rowParents [rowParents.Count - 1] as GameObject).transform.position.x > 8) {	// use x position of zeroth and last alien row
 					StartCoroutine (goDown (transform.position.y - 0.5f));
 
@@ -85,9 +84,7 @@ public class AlienMovement : MonoBehaviour
 
 	public void removeAlien (int row, int col, string expType = "")
 	{
-		Debug.Log ("Attempted to remove alien at (" + row + ", " + col + ")");
 		if (row >= 0 && row < alienRows.Count && col >= 0 && col < (alienRows [row] as ArrayList).Count && (alienRows [row] as ArrayList) [col] != null) {
-			Debug.Log ("Removed alien at (" + row + ", " + col + ")");
 			GameObject exp = Instantiate (explosion, ((alienRows [row] as ArrayList) [col] as GameObject).GetComponent<AlienScript> ().getPos (), Quaternion.identity);
 			exp.GetComponent<ExplosionControl> ().setType (expType);
 			Destroy ((alienRows [row] as ArrayList) [col] as GameObject);
@@ -132,23 +129,11 @@ public class AlienMovement : MonoBehaviour
 					if (alienRows.Count == 0) {
 						return;
 					}
-//					int i = 0;
-//					int firstRow = 1;
-//					if (rowParents.Count > 1) {
-//						while (i < rowParents.Count && rowParents [i] == null) {	// find first real row of aliens
-//							i++;
-//						}
-//						firstRow = i + 1;
-//					}
 					while (rowParents.Count > 0 && rowParents [rowParents.Count - 1] == null) {
 						rowParents.RemoveAt (rowParents.Count - 1);
 					}
 				}
 			}
-//			for (int i = col; i < (alienRows [row] as ArrayList).Count; i++) {
-//				AlienScript theAlien = ((alienRows [row] as ArrayList) [i] as GameObject).GetComponent<AlienScript> ();
-//				theAlien.setArrayPosition (theAlien.getRow (), theAlien.getCol () - 1);
-//			}
 		}
 	}
 }
