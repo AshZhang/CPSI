@@ -20,6 +20,7 @@ public class OOPBullet : BulletMovement {
 			BulletMovement theBullet = newBullet.GetComponent<BulletMovement> ();
 			theBullet.setVelocity(new Vector3(-theBullet.getVelocity() * Mathf.Sin(angle * Mathf.Deg2Rad), theBullet.getVelocity() * Mathf.Cos(angle * Mathf.Deg2Rad), 0));
 			GameObject.Find ("Player").GetComponent<PlayerControl> ().addBullet ();
+
 		}
 		Destroy (this.gameObject);
 	}

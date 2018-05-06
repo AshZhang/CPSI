@@ -62,7 +62,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &61440420699836242
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -102,6 +102,7 @@ MonoBehaviour:
   yVel: 6
   rb: {fileID: 50261154209780520}
   explosion: {fileID: 1301984020171162, guid: 200bb01e1a4574eba87d0f8083eb662d, type: 2}
+  shouldDelete: 1
 --- !u!212 &212437541812178028
 SpriteRenderer:
   m_ObjectHideFlags: 1

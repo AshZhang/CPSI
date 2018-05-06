@@ -8,6 +8,7 @@ public class BulletMovement : MonoBehaviour
 	public float yVel;
 	public Rigidbody2D rb;
 	public GameObject explosion;
+	public bool shouldDelete = true;
 
 	private bool velSet;
 
@@ -29,7 +30,9 @@ public class BulletMovement : MonoBehaviour
 
 	public virtual void OnDestroy ()
 	{
-		GameObject.Find ("Player").GetComponent<PlayerControl> ().deleteBullet ();
+		if (shouldDelete) {
+			GameObject.Find ("Player").GetComponent<PlayerControl> ().deleteBullet ();
+		}
 	}
 
 	public virtual void OnCollisionEnter2D (Collision2D coll)

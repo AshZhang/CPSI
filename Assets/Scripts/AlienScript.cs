@@ -2,17 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class AlienScript : MonoBehaviour {
 
 	public GameObject alienBullet;
-
 
 	private int row;
 	private int col;
 
 	// Use this for initialization
 	void Start () {
+		GetComponent<BoxCollider2D> ().size = GetComponent<SpriteRenderer> ().sprite.bounds.size;
 	}
 	
 	// Update is called once per frame
@@ -26,6 +25,10 @@ public class AlienScript : MonoBehaviour {
 	public void setArrayPosition(int row, int col){
 		this.row = row;
 		this.col = col;
+	}
+
+	public void setSprite(Sprite sp){
+		GetComponent<SpriteRenderer> ().sprite = sp;
 	}
 
 	public int getCol(){

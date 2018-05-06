@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Bullet
   - explosion
+  - powerup
+  - AlienBullet
   layers:
   - Default
   - TransparentFX

@@ -12,6 +12,7 @@ public class PlayerControl : MonoBehaviour
 	public GameObject bullet;
 	public GameObject arrayBullet;
 	public GameObject OOPBullet;
+	public GameObject TAship;
 	public Text livesText;
 	public GameObject explosion;
 
@@ -31,7 +32,7 @@ public class PlayerControl : MonoBehaviour
 		numBullets = 0;
 		numSpecialShots = 0;
 		powerupMode = "none";
-
+		GetComponent<BoxCollider2D> ().size = GetComponent<SpriteRenderer> ().sprite.bounds.size;
 	}
 	
 	// Update is called once per frame
@@ -82,7 +83,7 @@ public class PlayerControl : MonoBehaviour
 			Instantiate (explosion, transform.position, Quaternion.identity);
 			livesText.text = "Lives: " + lives;
 			Destroy (coll.gameObject);
-		} else if (!coll.gameObject.name.Contains ("Side Walls") && !coll.gameObject.name.Contains ("Alien 1")) {
+		} else if (coll.gameObject.tag == "powerup") {
 			string objName = coll.gameObject.GetComponent<Powerup> ().getPower ();
 			switch (objName) {
 			case "loop":
@@ -98,9 +99,12 @@ public class PlayerControl : MonoBehaviour
 				numSpecialShots = 3;
 				break;
 			case "TA":
+				Instantiate (TAship, new Vector3 (transform.position.x - Random.Range(0.5f, 1.5f), transform.position.y, transform.position.z), Quaternion.identity);
+				Instantiate (TAship, new Vector3 (transform.position.x + Random.Range(0.5f, 1.5f), transform.position.y, transform.position.z), Quaternion.identity);
 				break;
 			case "pumpkin":
 				lives++;
+				livesText.text = "Lives: " + lives;
 				break;
 			default:
 				break;
@@ -117,7 +121,8 @@ public class PlayerControl : MonoBehaviour
 		numBullets--;
 	}
 
-	public void addBullet(){
+	public void addBullet ()
+	{
 		numBullets++;
 	}
 }

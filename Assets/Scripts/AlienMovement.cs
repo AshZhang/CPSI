@@ -9,14 +9,21 @@ public class AlienMovement : MonoBehaviour
 	public float xVel;
 	public GameObject alien;
 	public GameObject explosion;
+	public string gameMode;
 
 	private ArrayList alienRows;
 	private ArrayList rowParents;
 	private bool goingDown;
+	private Sprite alien1;
+	private Sprite alien2;
+	private Sprite alien3;
 
 	// Use this for initialization
 	void Start ()
 	{
+		alien1 = Resources.Load<Sprite> ("Art/" + gameMode + "/alien 1");
+		alien2 = Resources.Load<Sprite> ("Art/" + gameMode + "/alien 2");
+		alien3 = Resources.Load<Sprite> ("Art/" + gameMode + "/alien 3");
 		goingDown = false;
 		alienRows = new ArrayList ();
 		rowParents = new ArrayList ();
@@ -30,16 +37,30 @@ public class AlienMovement : MonoBehaviour
 			for (int j = 0; j < 3; j++) {
 				GameObject newAlien = Instantiate (alien, new Vector3 (transform.position.x + i * 1.5f, transform.position.y - j, transform.position.z), Quaternion.identity);
 				(alienRows [i] as ArrayList).Add (newAlien);
-				newAlien.GetComponent<AlienScript> ().setArrayPosition (i, j);
+				AlienScript theAlien = newAlien.GetComponent<AlienScript> ();
+				theAlien.setArrayPosition (i, j);
+				switch (j) {
+				case 0:
+					theAlien.setSprite (alien3);
+					break;
+				case 1:
+					theAlien.setSprite (alien2);
+					break;
+				case 2:
+					theAlien.setSprite (alien1);
+					break;
+				default:
+					break;
+				}
 				newAlien.transform.parent = rowParent.transform;
+				if (gameMode == "CompSci") {
+					Destroy (newAlien.GetComponent<Animator> ());
+				} else {
+					newAlien.GetComponent<Animator> ().runtimeAnimatorController = Resources.Load<RuntimeAnimatorController> ("Animations/alien " + (j + 1) + " controller") as RuntimeAnimatorController;
+				}
 			}
 			rowParents.Add (rowParent);
 		}
-//		foreach (ArrayList row in alienRows) {
-//			foreach (GameObject alien in row) {
-//				alien.transform.parent = this.transform;
-//			}
-//		}
 	}
 	
 	// Update is called once per frame

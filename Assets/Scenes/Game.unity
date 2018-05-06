@@ -149,6 +149,7 @@ MonoBehaviour:
   arrayBullet: {fileID: 1101387079478090, guid: cae03b2498f574bc4a6b3c0a7b596af7,
     type: 2}
   OOPBullet: {fileID: 1186440563978850, guid: 01c2f33fffa1e4cf288eef5f386ff7cf, type: 2}
+  TAship: {fileID: 1651633081625476, guid: f4fe961be442240c093191ad50145168, type: 2}
   livesText: {fileID: 945936196}
   explosion: {fileID: 1301984020171162, guid: 200bb01e1a4574eba87d0f8083eb662d, type: 2}
 --- !u!212 &685275946
@@ -240,7 +241,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.23724484}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.4}
@@ -408,9 +409,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75b23345c69bf4d26b4543258683db07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xVel: 0.05
+  xVel: 0.025
   alien: {fileID: 1495116400755916, guid: f8c59caed10c24e089cf89805a125025, type: 2}
   explosion: {fileID: 1301984020171162, guid: 200bb01e1a4574eba87d0f8083eb662d, type: 2}
+  gameMode: Classic
 --- !u!4 &1048241891
 Transform:
   m_ObjectHideFlags: 0
@@ -602,7 +604,7 @@ Prefab:
     - target: {fileID: 114303144388480542, guid: ff9ec88f66e8843c9b56bb664339b85e,
         type: 2}
       propertyPath: power
-      value: OOP
+      value: TA
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ff9ec88f66e8843c9b56bb664339b85e, type: 2}
