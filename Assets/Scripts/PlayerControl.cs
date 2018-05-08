@@ -21,7 +21,7 @@ public class PlayerControl : MonoBehaviour
 	private int numBullets;
 	private int numSpecialShots;
 	private string powerupMode;
-	// 0 = normal, 1 = loop, 2 = arrays, 3 = OOP, 4 = recursion
+	private string gameMode;
 
 	// Use this for initialization
 	void Start ()
@@ -32,6 +32,8 @@ public class PlayerControl : MonoBehaviour
 		numBullets = 0;
 		numSpecialShots = 0;
 		powerupMode = "none";
+		gameMode = GameObject.Find ("LevelTracker").GetComponent<LevelTracker> ().getLevel ();
+		GetComponent<SpriteRenderer> ().sprite = Resources.Load<Sprite> ("Art/" + gameMode + "/spaceship");
 		GetComponent<BoxCollider2D> ().size = GetComponent<SpriteRenderer> ().sprite.bounds.size;
 	}
 	
@@ -49,22 +51,22 @@ public class PlayerControl : MonoBehaviour
 			switch (powerupMode) {
 			case "loop":
 				for (int i = 0; i < maxBullets; i++) {
-					Instantiate (bullet, new Vector3 (transform.position.x + (i - 1) * 0.5f, transform.position.y + 0.35f, transform.position.z), Quaternion.identity);
+					Instantiate (bullet, new Vector3 (transform.position.x + (i - 1) * 0.5f, transform.position.y + 0.35f + 0.5f * GetComponent<BoxCollider2D>().size.y, transform.position.z), Quaternion.identity);
 					numBullets++;
 				}
 				break;
 			case "arraylist":
-				Instantiate (arrayBullet, new Vector3 (transform.position.x, transform.position.y + 0.35f, transform.position.z), Quaternion.identity);
+				Instantiate (arrayBullet, new Vector3 (transform.position.x, transform.position.y + 0.35f + 0.5f * GetComponent<BoxCollider2D>().size.y, transform.position.z), Quaternion.identity);
 				numBullets++;
 				break;
 			case "OOP":
-				Instantiate (OOPBullet, new Vector3 (transform.position.x, transform.position.y + 0.35f, transform.position.z), Quaternion.identity);
+				Instantiate (OOPBullet, new Vector3 (transform.position.x, transform.position.y + 0.35f + 0.5f * GetComponent<BoxCollider2D>().size.y, transform.position.z), Quaternion.identity);
 				numBullets++;
 				break;
 			case "TA":
 				break;
 			default:
-				Instantiate (bullet, new Vector3 (transform.position.x, transform.position.y + 0.35f, transform.position.z), Quaternion.identity);
+				Instantiate (bullet, new Vector3 (transform.position.x, transform.position.y + 0.35f + 0.5f * GetComponent<BoxCollider2D>().size.y, transform.position.z), Quaternion.identity);
 				numBullets++;
 				break;
 			}
@@ -99,8 +101,8 @@ public class PlayerControl : MonoBehaviour
 				numSpecialShots = 3;
 				break;
 			case "TA":
-				Instantiate (TAship, new Vector3 (transform.position.x - Random.Range(0.5f, 1.5f), transform.position.y, transform.position.z), Quaternion.identity);
-				Instantiate (TAship, new Vector3 (transform.position.x + Random.Range(0.5f, 1.5f), transform.position.y, transform.position.z), Quaternion.identity);
+				Instantiate (TAship, new Vector3 (transform.position.x - Random.Range (0.5f, 1.5f), transform.position.y, transform.position.z), Quaternion.identity);
+				Instantiate (TAship, new Vector3 (transform.position.x + Random.Range (0.5f, 1.5f), transform.position.y, transform.position.z), Quaternion.identity);
 				break;
 			case "pumpkin":
 				lives++;

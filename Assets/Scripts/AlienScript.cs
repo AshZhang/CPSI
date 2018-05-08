@@ -5,6 +5,7 @@ using UnityEngine;
 public class AlienScript : MonoBehaviour {
 
 	public GameObject alienBullet;
+	public GameObject powerup;
 
 	private int row;
 	private int col;
@@ -41,5 +42,30 @@ public class AlienScript : MonoBehaviour {
 
 	public Vector3 getPos(){
 		return transform.position;
+	}
+
+	void OnDestroy(){
+		if (Random.Range (1, 7) == 1) {
+			int power = Random.Range (1, 5);
+			Powerup newPower = Instantiate (powerup, transform.position, Quaternion.identity).GetComponent<Powerup>();
+			switch (power) {
+			case 1:
+				newPower.setPower ("loop");
+				break;
+			case 2:
+				newPower.setPower ("arraylist");
+				break;
+			case 3:
+				newPower.setPower ("OOP");
+				break;
+			case 4:
+				newPower.setPower ("TA");
+				break;
+			case 5:
+				newPower.setPower ("pumpkin");
+				break;
+			default: break;
+			}
+		}
 	}
 }

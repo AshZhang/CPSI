@@ -16,6 +16,6 @@ public class Restart : MonoBehaviour {
 	}
 
 	void OnMouseDown(){
-		SceneManager.LoadScene ("Game");
+		SceneManager.LoadScene ("Start");
 	}
 }

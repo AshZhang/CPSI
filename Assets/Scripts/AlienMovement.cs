@@ -9,8 +9,8 @@ public class AlienMovement : MonoBehaviour
 	public float xVel;
 	public GameObject alien;
 	public GameObject explosion;
-	public string gameMode;
 
+	private string gameMode;
 	private ArrayList alienRows;
 	private ArrayList rowParents;
 	private bool goingDown;
@@ -21,6 +21,7 @@ public class AlienMovement : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
+		gameMode = GameObject.Find ("LevelTracker").GetComponent<LevelTracker> ().getLevel ();
 		alien1 = Resources.Load<Sprite> ("Art/" + gameMode + "/alien 1");
 		alien2 = Resources.Load<Sprite> ("Art/" + gameMode + "/alien 2");
 		alien3 = Resources.Load<Sprite> ("Art/" + gameMode + "/alien 3");

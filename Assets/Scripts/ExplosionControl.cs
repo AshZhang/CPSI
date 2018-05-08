@@ -22,8 +22,8 @@ public class ExplosionControl : MonoBehaviour {
 		if (type != "") {
 			type += " ";
 		}
-		anim.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController> ("Animations/" + type + "explosion controller") as RuntimeAnimatorController;
+		anim.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController> ("Animations/" + type + " explosion controller") as RuntimeAnimatorController;
 		anim.gameObject.SetActive (true);
-		anim.Play (type+"explosion");
+		anim.Play (type+" explosion");
 	}
 }
