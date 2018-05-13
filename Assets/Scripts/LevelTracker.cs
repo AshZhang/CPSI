@@ -7,19 +7,16 @@ using UnityEngine.UI;
 public class LevelTracker : MonoBehaviour
 {
 
-	private static LevelTracker instance = null;
-
-	private string levelSelection;
-
 	public Button buttonPrefab;
 	public TextAsset levelList;
 
 	private GameObject scrollContent;
 	private Button[] buttons;
 	private string[] levels;
+	private string levelSelection;
+	private static LevelTracker instance = null;
 
-	void Awake ()
-	{
+	void Awake(){
 		if (instance == null) {
 			instance = this;
 			DontDestroyOnLoad (gameObject);

@@ -152,6 +152,7 @@ MonoBehaviour:
   TAship: {fileID: 1651633081625476, guid: f4fe961be442240c093191ad50145168, type: 2}
   livesText: {fileID: 945936196}
   explosion: {fileID: 1301984020171162, guid: 200bb01e1a4574eba87d0f8083eb662d, type: 2}
+  jerooBG: {fileID: 1951808002889604, guid: 66cfda333f1da4bf68380c3cfc5db400, type: 2}
 --- !u!212 &685275946
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -54,7 +54,7 @@ public class AlienMovement : MonoBehaviour
 					break;
 				}
 				newAlien.transform.parent = rowParent.transform;
-				if (gameMode == "CompSci") {
+				if (gameMode != "Classic") {
 					Destroy (newAlien.GetComponent<Animator> ());
 				} else {
 					newAlien.GetComponent<Animator> ().runtimeAnimatorController = Resources.Load<RuntimeAnimatorController> ("Animations/alien " + (j + 1) + " controller") as RuntimeAnimatorController;

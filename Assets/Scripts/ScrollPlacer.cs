@@ -5,9 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class ScrollPlacer : MonoBehaviour {
 
-	private static ScrollPlacer instance = null;
-
 	public Canvas theCanvas;
+
+	private static ScrollPlacer instance = null;
 
 	void Awake(){
 		if (instance == null) {

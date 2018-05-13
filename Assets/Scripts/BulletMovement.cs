@@ -18,6 +18,11 @@ public class BulletMovement : MonoBehaviour
 		if (!velSet) {
 			rb.velocity = new Vector3 (0, yVel, 0);
 		}
+
+		if (GameObject.Find ("LevelTracker").GetComponent<LevelTracker> ().getLevel () == "Jeroo") {
+			GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite> ("Art/Jeroo/bullet");
+		}
+		GetComponent<BoxCollider2D> ().size = GetComponent<SpriteRenderer> ().sprite.bounds.size;
 	}
 
 	// Update is called once per frame

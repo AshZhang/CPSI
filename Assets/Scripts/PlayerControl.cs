@@ -15,6 +15,7 @@ public class PlayerControl : MonoBehaviour
 	public GameObject TAship;
 	public Text livesText;
 	public GameObject explosion;
+	public GameObject jerooBG;
 
 	private int lives;
 	private int maxBullets;
@@ -35,6 +36,9 @@ public class PlayerControl : MonoBehaviour
 		gameMode = GameObject.Find ("LevelTracker").GetComponent<LevelTracker> ().getLevel ();
 		GetComponent<SpriteRenderer> ().sprite = Resources.Load<Sprite> ("Art/" + gameMode + "/spaceship");
 		GetComponent<BoxCollider2D> ().size = GetComponent<SpriteRenderer> ().sprite.bounds.size;
+		if (gameMode == "Jeroo") {
+			Instantiate (jerooBG, new Vector3(0, 0, 5), Quaternion.identity);
+		}
 	}
 	
 	// Update is called once per frame
@@ -62,8 +66,6 @@ public class PlayerControl : MonoBehaviour
 			case "OOP":
 				Instantiate (OOPBullet, new Vector3 (transform.position.x, transform.position.y + 0.35f + 0.5f * GetComponent<BoxCollider2D>().size.y, transform.position.z), Quaternion.identity);
 				numBullets++;
-				break;
-			case "TA":
 				break;
 			default:
 				Instantiate (bullet, new Vector3 (transform.position.x, transform.position.y + 0.35f + 0.5f * GetComponent<BoxCollider2D>().size.y, transform.position.z), Quaternion.identity);
