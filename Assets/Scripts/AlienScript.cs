@@ -20,6 +20,7 @@ public class AlienScript : MonoBehaviour {
 		int rand = (int)Random.Range (1, 1001);
 		if (rand == 1) {
 			Instantiate (alienBullet, transform.position, Quaternion.identity);
+			GetComponent<AudioSource> ().Play ();
 		}
 	}
 
@@ -46,7 +47,7 @@ public class AlienScript : MonoBehaviour {
 
 	void OnDestroy(){
 		if (Random.Range (1, 7) == 1) {
-			int power = Random.Range (1, 5);
+			int power = Random.Range (1, 7);
 			Powerup newPower = Instantiate (powerup, transform.position, Quaternion.identity).GetComponent<Powerup>();
 			switch (power) {
 			case 1:
@@ -63,6 +64,9 @@ public class AlienScript : MonoBehaviour {
 				break;
 			case 5:
 				newPower.setPower ("pumpkin");
+				break;
+			case 6:
+				newPower.setPower ("recursion");
 				break;
 			default: break;
 			}

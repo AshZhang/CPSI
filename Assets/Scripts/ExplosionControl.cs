@@ -11,6 +11,9 @@ public class ExplosionControl : MonoBehaviour
 	void Start ()
 	{
 		transform.position = new Vector3 (transform.position.x, transform.position.y, transform.position.z - 5);
+		if (GameObject.Find ("LevelTracker").GetComponent<LevelTracker> ().getLevel () == "War Games") {
+			setType ("war games");
+		}
 	}
 	
 	// Update is called once per frame

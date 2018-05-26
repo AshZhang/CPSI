@@ -35,6 +35,7 @@ public class LevelTracker : MonoBehaviour
 		for (int i = 0; i < levels.Length; i++) {
 			buttons [i] = Instantiate (buttonPrefab);
 			buttons [i].transform.GetChild (0).GetComponent<Text> ().text = levels [i];
+			buttons [i].transform.GetChild (1).GetComponent<Image> ().sprite = Resources.Load<Sprite> ("Art/Menu Icons/" + levels [i]);
 			buttons [i].transform.SetParent (scrollContent.transform);
 			string level = levels [i];
 			buttons [i].onClick.AddListener (() => chooseLevel (level));

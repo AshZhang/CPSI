@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class ArrayBullet : BulletMovement {
 
+	public override void Start(){
+		base.Start ();
+		GetComponent<SpriteRenderer> ().sprite = Resources.Load<Sprite> ("Art/arraylist bullet");
+		GetComponent<BoxCollider2D> ().size = GetComponent<SpriteRenderer> ().sprite.bounds.size;
+	}
+
 	public override void OnCollisionEnter2D (Collision2D coll)
 	{
 		if (coll.gameObject.tag == "Bullet") {

@@ -18,6 +18,16 @@ public class TAShip : MonoBehaviour
 	{
 		rb.velocity = new Vector3 (xVel, 0, 0);
 		lives = 2;
+		string gameMode = GameObject.Find ("LevelTracker").GetComponent<LevelTracker> ().getLevel();
+		switch (gameMode) {
+		case "Classic":
+		case "Processing":
+		case "The Net":
+			GetComponent<SpriteRenderer> ().sprite = Resources.Load<Sprite> ("Art/" + gameMode + "/ta ship");
+			break;
+		default:
+			break;
+		}
 	}
 	
 	// Update is called once per frame
@@ -31,6 +41,7 @@ public class TAShip : MonoBehaviour
 		if (curBullet == null) {
 			curBullet = Instantiate (bullet, new Vector3 (transform.position.x, transform.position.y + 0.35f + 0.5f * GetComponent<BoxCollider2D>().size.y, transform.position.z), Quaternion.identity);
 			curBullet.GetComponent<BulletMovement> ().shouldDelete = false;
+			GetComponent<AudioSource> ().Play ();
 		}
 	}
 
@@ -40,6 +51,7 @@ public class TAShip : MonoBehaviour
 			Instantiate (explosion, transform.position, Quaternion.identity);
 			lives--;
 			if (lives <= 0) {
+				GameObject.Find ("Player").GetComponent<PlayerControl> ().deleteTAship ();
 				Destroy (this.gameObject);
 			}
 			Destroy (coll.gameObject);

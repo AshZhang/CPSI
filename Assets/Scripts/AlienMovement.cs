@@ -28,13 +28,13 @@ public class AlienMovement : MonoBehaviour
 		goingDown = false;
 		alienRows = new ArrayList ();
 		rowParents = new ArrayList ();
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < 7; i++) {
 			alienRows.Add (new ArrayList ());
 		}
 		for (int i = 0; i < alienRows.Count; i++) {
 			GameObject rowParent = new GameObject ("RowParent" + i);
+			rowParent.transform.position = new Vector3 (transform.position.x + i * 1.5f, transform.position.y, transform.position.z);
 			rowParent.transform.parent = this.transform;
-			rowParent.transform.Translate (i * 1.5f, 0, 0);
 			for (int j = 0; j < 3; j++) {
 				GameObject newAlien = Instantiate (alien, new Vector3 (transform.position.x + i * 1.5f, transform.position.y - j, transform.position.z), Quaternion.identity);
 				(alienRows [i] as ArrayList).Add (newAlien);
@@ -54,10 +54,14 @@ public class AlienMovement : MonoBehaviour
 					break;
 				}
 				newAlien.transform.parent = rowParent.transform;
-				if (gameMode != "Classic") {
+				switch (gameMode) {
+				case "Classic":
+				case "The Net":
+					newAlien.GetComponent<Animator> ().runtimeAnimatorController = Resources.Load<RuntimeAnimatorController> ("Animations/"+gameMode+" alien " + (j + 1) + " controller") as RuntimeAnimatorController;
+					break;
+				default:
 					Destroy (newAlien.GetComponent<Animator> ());
-				} else {
-					newAlien.GetComponent<Animator> ().runtimeAnimatorController = Resources.Load<RuntimeAnimatorController> ("Animations/alien " + (j + 1) + " controller") as RuntimeAnimatorController;
+					break;
 				}
 			}
 			rowParents.Add (rowParent);
@@ -71,7 +75,6 @@ public class AlienMovement : MonoBehaviour
 			if (!goingDown) {
 				if ((rowParents [0] as GameObject).transform.position.x < -8 || (rowParents [rowParents.Count - 1] as GameObject).transform.position.x > 8) {	// use x position of zeroth and last alien row
 					StartCoroutine (goDown (transform.position.y - 0.5f));
-
 				} else {
 					transform.Translate (xVel, 0, 0);
 				}

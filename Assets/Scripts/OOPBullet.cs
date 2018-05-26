@@ -6,6 +6,12 @@ public class OOPBullet : BulletMovement {
 
 	public GameObject bullet;
 
+	public override void Start(){
+		base.Start ();
+		GetComponent<SpriteRenderer> ().sprite = Resources.Load<Sprite> ("Art/OOP bullet");
+		GetComponent<BoxCollider2D> ().size = GetComponent<SpriteRenderer> ().sprite.bounds.size;
+	}
+
 	public override void Update(){
 		base.Update ();
 		if (Input.GetButton ("Fire1") && transform.position.y > -2) {

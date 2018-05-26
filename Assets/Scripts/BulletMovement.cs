@@ -18,9 +18,15 @@ public class BulletMovement : MonoBehaviour
 		if (!velSet) {
 			rb.velocity = new Vector3 (0, yVel, 0);
 		}
-
-		if (GameObject.Find ("LevelTracker").GetComponent<LevelTracker> ().getLevel () == "Jeroo") {
-			GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite> ("Art/Jeroo/bullet");
+		string level = GameObject.Find ("LevelTracker").GetComponent<LevelTracker> ().getLevel ();
+		switch (level) {
+		case "Jeroo":
+		case "Tron":
+		case "The Net":
+			GetComponent<SpriteRenderer> ().sprite = Resources.Load<Sprite> ("Art/" + level + "/bullet");
+			break;
+		default:
+			break;
 		}
 		GetComponent<BoxCollider2D> ().size = GetComponent<SpriteRenderer> ().sprite.bounds.size;
 	}
@@ -49,16 +55,22 @@ public class BulletMovement : MonoBehaviour
 			Destroy (this.gameObject);
 			AlienMovement alienArray = GameObject.Find ("AlienParent").GetComponent<AlienMovement> ();
 			AlienScript deadAlien = coll.gameObject.GetComponent<AlienScript> ();
-			alienArray.removeAlien (deadAlien.getRow (), deadAlien.getCol ());
+			if (GameObject.Find ("LevelTracker").GetComponent<LevelTracker> ().getLevel () == "War Games") {
+				alienArray.removeAlien (deadAlien.getRow (), deadAlien.getCol (), "war games ");
+			} else {
+				alienArray.removeAlien (deadAlien.getRow (), deadAlien.getCol ());
+			}
 		}
 	}
 
-	public void setVelocity(Vector3 vel){
+	public void setVelocity (Vector3 vel)
+	{
 		rb.velocity = vel;
 		velSet = true;
 	}
 
-	public float getVelocity(){
+	public float getVelocity ()
+	{
 		return yVel;
 	}
 
