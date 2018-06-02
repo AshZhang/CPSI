@@ -16,7 +16,8 @@ public class LevelTracker : MonoBehaviour
 	private string levelSelection;
 	private static LevelTracker instance = null;
 
-	void Awake(){
+	void Awake ()
+	{
 		if (instance == null) {
 			instance = this;
 			DontDestroyOnLoad (gameObject);

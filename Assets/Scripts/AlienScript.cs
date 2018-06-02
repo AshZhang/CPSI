@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AlienScript : MonoBehaviour {
+public class AlienScript : MonoBehaviour
+{
 
 	public GameObject alienBullet;
 	public GameObject powerup;
@@ -11,12 +12,14 @@ public class AlienScript : MonoBehaviour {
 	private int col;
 
 	// Use this for initialization
-	void Start () {
+	void Start ()
+	{
 		GetComponent<BoxCollider2D> ().size = GetComponent<SpriteRenderer> ().sprite.bounds.size;
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+	{
 		int rand = (int)Random.Range (1, 1001);
 		if (rand == 1) {
 			Instantiate (alienBullet, transform.position, Quaternion.identity);
@@ -24,31 +27,37 @@ public class AlienScript : MonoBehaviour {
 		}
 	}
 
-	public void setArrayPosition(int row, int col){
+	public void setArrayPosition (int row, int col)
+	{
 		this.row = row;
 		this.col = col;
 	}
 
-	public void setSprite(Sprite sp){
+	public void setSprite (Sprite sp)
+	{
 		GetComponent<SpriteRenderer> ().sprite = sp;
 	}
 
-	public int getCol(){
+	public int getCol ()
+	{
 		return col;
 	}
 
-	public int getRow(){
+	public int getRow ()
+	{
 		return row;
 	}
 
-	public Vector3 getPos(){
+	public Vector3 getPos ()
+	{
 		return transform.position;
 	}
 
-	void OnDestroy(){
+	void OnDestroy ()
+	{
 		if (Random.Range (1, 7) == 1) {
 			int power = Random.Range (1, 7);
-			Powerup newPower = Instantiate (powerup, transform.position, Quaternion.identity).GetComponent<Powerup>();
+			Powerup newPower = Instantiate (powerup, transform.position, Quaternion.identity).GetComponent<Powerup> ();
 			switch (power) {
 			case 1:
 				newPower.setPower ("loop");
@@ -68,7 +77,8 @@ public class AlienScript : MonoBehaviour {
 			case 6:
 				newPower.setPower ("recursion");
 				break;
-			default: break;
+			default:
+				break;
 			}
 		}
 	}

@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ScrollPlacer : MonoBehaviour {
+public class ScrollPlacer : MonoBehaviour
+{
 
 	public Canvas theCanvas;
 
 	private static ScrollPlacer instance = null;
 
-	void Awake(){
+	void Awake ()
+	{
 		if (instance == null) {
 			instance = this;
 			DontDestroyOnLoad (gameObject);
@@ -19,14 +21,16 @@ public class ScrollPlacer : MonoBehaviour {
 	}
 
 	// Use this for initialization
-	void Start () {
+	void Start ()
+	{
 	}
 
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+	{
 		if (SceneManager.GetActiveScene ().name == "Start") {
 			theCanvas.gameObject.SetActive (true);
-		}else{
+		} else {
 			theCanvas.gameObject.SetActive (false);
 		}
 	}

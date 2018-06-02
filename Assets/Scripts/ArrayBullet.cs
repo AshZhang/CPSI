@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ArrayBullet : BulletMovement {
+public class ArrayBullet : BulletMovement
+{
 
-	public override void Start(){
+	public override void Start ()
+	{
 		base.Start ();
 		GetComponent<SpriteRenderer> ().sprite = Resources.Load<Sprite> ("Art/arraylist bullet");
 		GetComponent<BoxCollider2D> ().size = GetComponent<SpriteRenderer> ().sprite.bounds.size;

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class AlienMovement : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class AlienMovement : MonoBehaviour
 	public float xVel;
 	public GameObject alien;
 	public GameObject explosion;
+	public Text scoreText;
 
 	private string gameMode;
 	private ArrayList alienRows;
@@ -17,10 +19,13 @@ public class AlienMovement : MonoBehaviour
 	private Sprite alien1;
 	private Sprite alien2;
 	private Sprite alien3;
+	private int score;
 
 	// Use this for initialization
 	void Start ()
 	{
+		score = 0;
+		scoreText.text = "Score: " + score;
 		gameMode = GameObject.Find ("LevelTracker").GetComponent<LevelTracker> ().getLevel ();
 		alien1 = Resources.Load<Sprite> ("Art/" + gameMode + "/alien 1");
 		alien2 = Resources.Load<Sprite> ("Art/" + gameMode + "/alien 2");
@@ -57,7 +62,7 @@ public class AlienMovement : MonoBehaviour
 				switch (gameMode) {
 				case "Classic":
 				case "The Net":
-					newAlien.GetComponent<Animator> ().runtimeAnimatorController = Resources.Load<RuntimeAnimatorController> ("Animations/"+gameMode+" alien " + (j + 1) + " controller") as RuntimeAnimatorController;
+					newAlien.GetComponent<Animator> ().runtimeAnimatorController = Resources.Load<RuntimeAnimatorController> ("Animations/" + gameMode + " alien " + (j + 1) + " controller") as RuntimeAnimatorController;
 					break;
 				default:
 					Destroy (newAlien.GetComponent<Animator> ());
@@ -112,6 +117,8 @@ public class AlienMovement : MonoBehaviour
 		if (row >= 0 && row < alienRows.Count && col >= 0 && col < (alienRows [row] as ArrayList).Count && (alienRows [row] as ArrayList) [col] != null) {
 			GameObject exp = Instantiate (explosion, ((alienRows [row] as ArrayList) [col] as GameObject).GetComponent<AlienScript> ().getPos (), Quaternion.identity);
 			exp.GetComponent<ExplosionControl> ().setType (expType);
+			score += 10;
+			scoreText.text = "Score: " + score;
 			Destroy ((alienRows [row] as ArrayList) [col] as GameObject);
 			(alienRows [row] as ArrayList) [col] = null;
 			if (checkRowEmpty (row)) {

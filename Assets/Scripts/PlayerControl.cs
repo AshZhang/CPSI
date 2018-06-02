@@ -42,7 +42,7 @@ public class PlayerControl : MonoBehaviour
 		GetComponent<SpriteRenderer> ().sprite = Resources.Load<Sprite> ("Art/" + gameMode + "/spaceship");
 		GetComponent<BoxCollider2D> ().size = GetComponent<SpriteRenderer> ().sprite.bounds.size;
 		if (gameMode == "Jeroo") {
-			Instantiate (jerooBG, new Vector3(0, 0, 5), Quaternion.identity);
+			Instantiate (jerooBG, new Vector3 (0, 0, 5), Quaternion.identity);
 		}
 	}
 	
@@ -62,12 +62,12 @@ public class PlayerControl : MonoBehaviour
 			switch (powerupMode) {
 			case "loop":
 				for (int i = 0; i < maxBullets; i++) {
-					Instantiate (bullet, new Vector3 (transform.position.x + (i - 1) * 0.5f, transform.position.y + 0.35f + 0.5f * GetComponent<BoxCollider2D>().size.y, transform.position.z), Quaternion.identity);
+					Instantiate (bullet, new Vector3 (transform.position.x + (i - 1) * 0.5f, transform.position.y + 0.35f + 0.5f * GetComponent<BoxCollider2D> ().size.y, transform.position.z), Quaternion.identity);
 					numBullets++;
 				}
 				break;
 			case "arraylist":
-				Instantiate (arrayBullet, new Vector3 (transform.position.x, transform.position.y + 0.35f + 0.5f * GetComponent<BoxCollider2D>().size.y, transform.position.z), Quaternion.identity);
+				Instantiate (arrayBullet, new Vector3 (transform.position.x, transform.position.y + 0.35f + 0.5f * GetComponent<BoxCollider2D> ().size.y, transform.position.z), Quaternion.identity);
 				numBullets++;
 				break;
 			case "OOP":
@@ -75,7 +75,7 @@ public class PlayerControl : MonoBehaviour
 				numBullets++;
 				break;
 			default:
-				Instantiate (bullet, new Vector3 (transform.position.x, transform.position.y + 0.35f + 0.5f * GetComponent<BoxCollider2D>().size.y, transform.position.z), Quaternion.identity);
+				Instantiate (bullet, new Vector3 (transform.position.x, transform.position.y + 0.35f + 0.5f * GetComponent<BoxCollider2D> ().size.y, transform.position.z), Quaternion.identity);
 				numBullets++;
 				break;
 			}
@@ -119,12 +119,12 @@ public class PlayerControl : MonoBehaviour
 				break;
 			case "recursion":
 				GameObject[] curBlocks = GameObject.FindGameObjectsWithTag ("recursion block");
-				foreach(GameObject block in curBlocks){
+				foreach (GameObject block in curBlocks) {
 					Destroy (block);
 				}
 				for (int r = 0; r < 3; r++) {
 					for (int c = 0; c < 3; c++) {
-						Instantiate (recurBlock, new Vector3(-4 + r * 4, -2 + 0.4f * c, 0), Quaternion.identity);
+						Instantiate (recurBlock, new Vector3 (-4 + r * 4, -2 + 0.4f * c, 0), Quaternion.identity);
 					}
 				}
 				break;
@@ -151,7 +151,9 @@ public class PlayerControl : MonoBehaviour
 	{
 		numBullets++;
 	}
-	public void deleteTAship(){
+
+	public void deleteTAship ()
+	{
 		numTAships--;
 	}
 }
