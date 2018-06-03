@@ -1,0 +1,13 @@
+{
+"companyName": "Ashley Zhang",
+"productName": "CPSI: Beta",
+"dataUrl": "CPSI beta.data.unityweb",
+"asmCodeUrl": "CPSI beta.asm.code.unityweb",
+"asmMemoryUrl": "CPSI beta.asm.memory.unityweb",
+"asmFrameworkUrl": "CPSI beta.asm.framework.unityweb",
+"TOTAL_MEMORY": 268435456,
+"graphicsAPI": ["WebGL 2.0", "WebGL 1.0"],
+"webglContextAttributes": {"preserveDrawingBuffer": false},
+"splashScreenStyle": "Dark",
+"backgroundColor": "#231F20"
+}
