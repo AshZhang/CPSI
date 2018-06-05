@@ -9,6 +9,7 @@ TagManager:
   - powerup
   - AlienBullet
   - recursion block
+  - Alien
   layers:
   - Default
   - TransparentFX

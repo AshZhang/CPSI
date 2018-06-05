@@ -89,12 +89,14 @@ public class PlayerControl : MonoBehaviour
 
 	void OnCollisionEnter2D (Collision2D coll)
 	{
-		if (coll.gameObject.name == "AlienBullet(Clone)" || coll.gameObject.name == "Alien 1(Clone)") {
+		if (coll.gameObject.name == "AlienBullet(Clone)") {
 			lives--;
 			Instantiate (explosion, transform.position, Quaternion.identity);
 			livesText.text = "Lives: " + lives;
 			Destroy (coll.gameObject);
-		} else if (coll.gameObject.tag == "powerup") {
+		}else if(coll.gameObject.name == "Alien 1(Clone)"){
+			SceneManager.LoadScene ("Lose");
+		}else if (coll.gameObject.tag == "powerup") {
 			string objName = coll.gameObject.GetComponent<Powerup> ().getPower ();
 			GetComponent<AudioSource> ().clip = itemGet;
 			GetComponent<AudioSource> ().Play ();
