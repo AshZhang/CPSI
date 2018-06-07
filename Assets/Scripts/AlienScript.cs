@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AlienScript : MonoBehaviour
 {
@@ -24,6 +25,9 @@ public class AlienScript : MonoBehaviour
 		if (rand == 1) {
 			Instantiate (alienBullet, transform.position, Quaternion.identity);
 			GetComponent<AudioSource> ().Play ();
+		}
+		if (transform.position.y < -5.75) {
+			SceneManager.LoadScene ("Lose");
 		}
 	}
 

@@ -39,7 +39,7 @@ public class TAShip : MonoBehaviour
 
 	void OnCollisionEnter2D (Collision2D coll)
 	{
-		if (coll.gameObject.tag == "AlienBullet" || coll.gameObject.name == "Alien 1(Clone") {
+		if (coll.gameObject.tag == "AlienBullet") {
 			Instantiate (explosion, transform.position, Quaternion.identity);
 			lives--;
 			if (lives <= 0) {
@@ -47,7 +47,12 @@ public class TAShip : MonoBehaviour
 				Destroy (this.gameObject);
 			}
 			Destroy (coll.gameObject);
-		} else if (coll.gameObject.tag == "powerup") {
+		}else if (coll.gameObject.tag == "Alien"){
+			Instantiate (explosion, transform.position, Quaternion.identity);
+			Destroy (this.gameObject);
+		}
+
+		else if (coll.gameObject.tag == "powerup") {
 			Destroy (coll.gameObject);
 		} else {
 			Physics2D.IgnoreCollision (GetComponent<BoxCollider2D> (), coll.collider);

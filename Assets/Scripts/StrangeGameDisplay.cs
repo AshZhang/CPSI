@@ -16,6 +16,7 @@ public class StrangeGameDisplay : MonoBehaviour
 			endGameText.text = "Greetings Ms. Paymer\nHello\nA strange game.\nThe only winning move is to spam the spacebar.\nHow about another game of Ms. Paymer's Space Invaders?";
 			Destroy (GameObject.Find ("Lose Title"));
 			Destroy (GameObject.Find ("Win Title"));
+			Destroy (GameObject.Find ("Winner"));
 		}
 	}
 	
